@@ -1,6 +1,6 @@
 FROM lokedhs/sbcl-quicklisp:latest
 
-RUN apt-get update && apt-get install -y git librabbitmq-dev libfixposix-dev libffi-dev gcc g++ nodejs nodejs-legacy
+RUN apt-get update && apt-get install -y git librabbitmq-dev libfixposix-dev openjdk-8-jdk libffi-dev gcc g++ nodejs nodejs-legacy npm
 
 # Build the potato binary
 
@@ -21,12 +21,13 @@ RUN cd /root && \
 # Compile cljs code
 
 RUN cd /root/potato/web-app && \
-    lein with-profile -dev cljsbuild once prod admin-prod
+    /root/lein with-profile -dev cljsbuild once prod admin-prod
 
 # CSS compilation
 
-RUN npm install -g gulp && \
+RUN cd /root/potato/web-app && \
+    npm install -g gulp && \
     npm install
 
 RUN cd /root/potato/web-app && \
-    gump build
+    gulp build
