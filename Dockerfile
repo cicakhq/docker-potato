@@ -10,7 +10,7 @@ WORKDIR $POTATO_WORK
 
 RUN git clone https://github.com/cicakhq/potato && \
     cd potato && \
-    git checkout 15e71080fe98ce466bb4fe5b06675932431bfef8 && \
+    git checkout 3fff07cbdee7700ebca357d0c6c3ebc8c05bf537 && \
     git submodule init && \
     git submodule update && \
     tools/build_binary.sh
