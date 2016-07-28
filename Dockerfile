@@ -4,6 +4,22 @@ ENV POTATO_WORK /potato
 
 RUN apt-get update && apt-get install -y git librabbitmq-dev libfixposix-dev openjdk-8-jdk libffi-dev gcc g++ nodejs nodejs-legacy npm imagemagick
 
+# Create the user
+
+RUN useradd -m potato
+RUN mkdir $POTATO_WORK && chown potato $POTATO_WORK
+
+# Copy the QL installation from root's home directory
+RUN cp -r /root/quicklisp $POTATO_WORK && \
+    chown -R potato $POTATO_WORK/quicklisp && \
+    cp /root/.sbclrc $POTATO_WORK && \
+    chown potato $POTATO_WORK/.sbclrc
+
+# Use the potato user
+
+USER potato
+ENV HOME $POTATO_WORK
+
 # Build the potato binary
 
 WORKDIR $POTATO_WORK
@@ -28,9 +44,18 @@ RUN cd potato/web-app && \
 
 # CSS compilation
 
+USER root
+ENV HOME /root
 RUN cd potato/web-app && \
-    npm install -g gulp && \
+    npm install -g gulp
+USER potato
+ENV HOME $POTATO_WORK
+
+RUN cd potato/web-app && \
     npm install
 
 RUN cd potato/web-app && \
     gulp build
+
+USER root
+ENV HOME /root
