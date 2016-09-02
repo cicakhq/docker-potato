@@ -28,7 +28,9 @@ RUN git clone https://github.com/cicakhq/potato && \
     cd potato && \
     git checkout 8c54f8e0172473f5f4d1d9c4910689141c8ef722 && \
     git submodule init && \
-    git submodule update && \
+    git submodule update
+
+RUN cd potato && \
     tools/build_binary.sh
 
 # Install lein
