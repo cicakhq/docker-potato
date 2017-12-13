@@ -26,7 +26,7 @@ WORKDIR $POTATO_WORK
 
 RUN git clone https://github.com/cicakhq/potato && \
     cd potato && \
-    git checkout 420117181127b3ae3e2e1e604e85c9c07f38c97b && \
+    git checkout 10ccd0c0e713ad5b600af16b29ec08a4f4b8c09a && \
     git submodule init && \
     git submodule update
 
