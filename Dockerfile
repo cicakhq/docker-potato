@@ -2,7 +2,7 @@ FROM lokedhs/sbcl-quicklisp:latest
 
 ENV POTATO_WORK /potato
 
-RUN apt-get update && apt-get install -y git librabbitmq-dev libfixposix-dev openjdk-8-jdk libffi-dev gcc g++ nodejs nodejs-legacy npm imagemagick curl unzip sassc
+RUN apt-get update && apt-get install -y git librabbitmq-dev libfixposix-dev openjdk-8-jdk libffi-dev gcc g++ nodejs npm imagemagick curl unzip sassc
 
 # Create the user
 
