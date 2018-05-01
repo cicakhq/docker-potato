@@ -2,7 +2,7 @@ FROM lokedhs/sbcl-quicklisp:latest
 
 ENV POTATO_WORK /potato
 
-RUN apt-get update && apt-get install -y git librabbitmq-dev libfixposix-dev openjdk-8-jdk libffi-dev gcc g++ nodejs nodejs-legacy npm imagemagick curl unzip sassc
+RUN apt-get update && apt-get install -y git librabbitmq-dev libfixposix-dev openjdk-8-jdk libffi-dev gcc g++ nodejs npm imagemagick curl unzip sassc
 
 # Create the user
 
@@ -26,7 +26,7 @@ WORKDIR $POTATO_WORK
 
 RUN git clone https://github.com/cicakhq/potato && \
     cd potato && \
-    git checkout 8a6f4a3f849f45efe7ddfd42a5f2d18b2ff55bae && \
+    git checkout e73fac1e3bd989e427ba859ae804ad11ce0201d9 && \
     git submodule init && \
     git submodule update
 
